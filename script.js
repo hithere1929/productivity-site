@@ -34,6 +34,13 @@ document.addEventListener("DOMContentLoaded", () => {
     taskList.innerHTML = "";
     const today = new Date().toISOString().split("T")[0];
 
+    // 🔄 Sort tasks by due date and time
+    tasks.sort((a, b) => {
+      const aDate = new Date(`${a.date || "9999-12-31"}T${a.time || "23:59"}`);
+      const bDate = new Date(`${b.date || "9999-12-31"}T${b.time || "23:59"}`);
+      return aDate - bDate;
+    });
+
     tasks.forEach((task, index) => {
       const li = document.createElement("li");
       li.className = "task-item";
