@@ -41,12 +41,33 @@ document.addEventListener("DOMContentLoaded", () => {
       return aDate - bDate;
     });
 
+    // 🎨 Group tasks by exact date+time
+    const timeGroups = {};
+    tasks.forEach((task) => {
+      if (task.date && task.time) {
+        const key = `${task.date}|${task.time}`;
+        timeGroups[key] = (timeGroups[key] || 0) + 1;
+      }
+    });
+
     tasks.forEach((task, index) => {
       const li = document.createElement("li");
       li.className = "task-item";
       if (task.done) li.classList.add("completed");
       if (task.date && !task.done && task.date < today) {
         li.classList.add("overdue");
+      }
+
+      // 🎨 Highlight tasks with matching date+time
+      if (task.date && task.time) {
+        const key = `${task.date}|${task.time}`;
+        if (timeGroups[key] > 1) {
+          const groupIndex = Object.keys(timeGroups).sort().indexOf(key);
+          const colors = ["#ff6ec7", "#00ffd5", "#ffa500", "#9dff00", "#ff4f4f"];
+          const color = colors[groupIndex % colors.length];
+          li.style.borderLeft = `4px solid ${color}`;
+          li.style.boxShadow = `inset 0 0 8px ${color}40`;
+        }
       }
 
       const textSpan = document.createElement("span");
