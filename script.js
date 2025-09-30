@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const taskTime = document.getElementById("taskTime");
   const addTaskBtn = document.getElementById("addTaskBtn");
   const taskList = document.getElementById("taskList");
-  const progressBar = document.getElementById("progressBar");
   const progressText = document.getElementById("progressText");
 
   let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
@@ -22,18 +21,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function updateProgress() {
-  const total = tasks.length;
-  const done = tasks.filter(t => t.done).length;
-  const percent = total ? (done / total) * 100 : 0;
+    const total = tasks.length;
+    const done = tasks.filter(t => t.done).length;
+    const percent = total ? (done / total) * 100 : 0;
 
-  progressBar.style.width = percent + "%";
-  progressText.textContent = `${done} of ${total} tasks done`;
+    progressText.textContent = `${done} of ${total} tasks done`;
 
-  const visualBar = document.getElementById("progressBarVisual");
-  if (visualBar) {
-    visualBar.style.width = percent + "%";
+    const visualBar = document.getElementById("progressBarVisual");
+    if (visualBar) {
+      visualBar.style.width = percent + "%";
+      visualBar.classList.toggle("full", percent === 100);
+    }
   }
-}
 
   function renderTasks() {
     taskList.innerHTML = "";
@@ -131,4 +130,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderTasks();
 });
-
