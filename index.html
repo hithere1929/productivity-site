@@ -8,21 +8,25 @@
 </head>
 <body>
   <main class="container">
+    <!-- Navigation -->
     <nav class="navbar">
       <a href="index.html" class="active">Task Manager</a>
       <a href="notes.html">Notes</a>
       <a href="pomodoro.html">Pomodoro</a>
     </nav>
 
+    <!-- Title -->
     <h1>Task Manager</h1>
 
-    <div class="progress-container">
-      <div id="progressBar"></div>
-      <p id="progressText"></p>
+    <!-- Progress Section -->
+    <div class="progress-header">
+      <p id="progressText">0 of 0 tasks done</p>
+      <div class="progress-wrapper">
+        <div id="progressBarVisual"></div>
+      </div>
     </div>
-<div class="progress-wrapper">
-  <div id="progressBarVisual"></div>
-</div>
+
+    <!-- Input Fields -->
     <div class="input-group">
       <input type="text" id="taskInput" placeholder="Enter a task...">
       <input type="date" id="taskDate">
@@ -30,8 +34,8 @@
       <button id="addTaskBtn">Add</button>
     </div>
 
+    <!-- Task List -->
     <ul id="taskList"></ul>
   </main>
 </body>
-
 </html>
