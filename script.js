@@ -22,13 +22,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function updateProgress() {
-    const total = tasks.length;
-    const done = tasks.filter(t => t.done).length;
-    const percent = total ? (done / total) * 100 : 0;
+  const total = tasks.length;
+  const done = tasks.filter(t => t.done).length;
+  const percent = total ? (done / total) * 100 : 0;
 
-    progressBar.style.width = percent + "%";
-    progressText.textContent = `${done} of ${total} tasks done`;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `${done} of ${total} tasks done`;
+
+  const visualBar = document.getElementById("progressBarVisual");
+  if (visualBar) {
+    visualBar.style.width = percent + "%";
   }
+}
 
   function renderTasks() {
     taskList.innerHTML = "";
@@ -126,3 +131,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderTasks();
 });
+
